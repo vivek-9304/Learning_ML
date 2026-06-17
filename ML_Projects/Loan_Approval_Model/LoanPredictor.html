@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predictor</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Loan Approval Predictor</h1>
@@ -13,10 +14,28 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
-        <!-- Add more form fields as needed -->
-        <button type="submit">Predict</button>
+        <label for="education">Education:</label>
+        <select id="education" name="education">
+            <option value="Bachelors">Bachelors</option>
+            <option value="Masters">Masters</option>
+            <option value="PhD">PhD</option>
+            <option value="Associate">Associate</option>
+            <option value="High School">High School</option>
+        </select>
+        <label for="home_ownership">Home Ownership:</label>
+        <select id="home_ownership" name="home_ownership">
+            <option value="Own">Own</option>
+            <option value="Rent">Rent</option>
+            <option value="Mortgage">Mortgage</option>
+            <option value="Other">Other</option>
+        </select>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+        <label for="person_income">Person Income:</label>
+        <input type="number" id="person_income" name="person_income">
+        <label for="employee_experience">Employee Experience:</label>
+        <input type="number" id="employee_experience" name="employee_experience">
+        <br><button type="submit">Submit</button>
     </form>
-    <style src="style.css">
-    </style>
 </body>
 </html>
