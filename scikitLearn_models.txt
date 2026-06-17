@@ -1,0 +1,262 @@
+sklearn
+│
+├── datasets
+│   ├── load_iris
+│   ├── load_wine
+│   ├── load_digits
+│   ├── load_diabetes
+│   ├── load_breast_cancer
+│   ├── fetch_california_housing
+│   ├── fetch_20newsgroups
+│   ├── make_classification
+│   ├── make_regression
+│   ├── make_blobs
+│   ├── make_moons
+│   └── make_circles
+│
+├── preprocessing
+│   ├── Scaling
+│   │   ├── StandardScaler
+│   │   ├── MinMaxScaler
+│   │   ├── RobustScaler
+│   │   ├── MaxAbsScaler
+│   │   └── Normalizer
+│   │
+│   ├── Encoding
+│   │   ├── LabelEncoder
+│   │   ├── OneHotEncoder
+│   │   ├── OrdinalEncoder
+│   │   └── LabelBinarizer
+│   │
+│   ├── Feature Generation
+│   │   └── PolynomialFeatures
+│   │
+│   └── Transformations
+│       ├── PowerTransformer
+│       ├── QuantileTransformer
+│       └── Binarizer
+│
+├── impute
+│   ├── SimpleImputer
+│   ├── KNNImputer
+│   └── IterativeImputer
+│
+├── model_selection
+│   ├── Splitting
+│   │   ├── train_test_split
+│   │   ├── KFold
+│   │   ├── StratifiedKFold
+│   │   ├── GroupKFold
+│   │   ├── RepeatedKFold
+│   │   ├── LeaveOneOut
+│   │   └── TimeSeriesSplit
+│   │
+│   ├── Validation
+│   │   ├── cross_val_score
+│   │   ├── cross_validate
+│   │   ├── validation_curve
+│   │   └── learning_curve
+│   │
+│   └── Hyperparameter Search
+│       ├── GridSearchCV
+│       └── RandomizedSearchCV
+│
+├── feature_selection
+│   ├── SelectKBest
+│   ├── SelectPercentile
+│   ├── RFE
+│   ├── RFECV
+│   ├── SelectFromModel
+│   ├── VarianceThreshold
+│   ├── chi2
+│   ├── f_classif
+│   ├── f_regression
+│   ├── mutual_info_classif
+│   └── mutual_info_regression
+│
+├── feature_extraction
+│   ├── text
+│   │   ├── CountVectorizer
+│   │   ├── TfidfVectorizer
+│   │   ├── HashingVectorizer
+│   │   └── TfidfTransformer
+│   │
+│   └── image
+│
+├── compose
+│   ├── ColumnTransformer
+│   └── make_column_transformer
+│
+├── pipeline
+│   ├── Pipeline
+│   ├── make_pipeline
+│   └── FeatureUnion
+│
+├── metrics
+│   │
+│   ├── Classification
+│   │   ├── accuracy_score
+│   │   ├── precision_score
+│   │   ├── recall_score
+│   │   ├── f1_score
+│   │   ├── roc_auc_score
+│   │   ├── log_loss
+│   │   ├── confusion_matrix
+│   │   └── classification_report
+│   │
+│   ├── Regression
+│   │   ├── mean_absolute_error
+│   │   ├── mean_squared_error
+│   │   ├── root_mean_squared_error
+│   │   ├── median_absolute_error
+│   │   └── r2_score
+│   │
+│   └── Clustering
+│       ├── silhouette_score
+│       ├── davies_bouldin_score
+│       └── adjusted_rand_score
+│
+├── linear_model
+│   │
+│   ├── Regression
+│   │   ├── LinearRegression
+│   │   ├── Ridge
+│   │   ├── RidgeCV
+│   │   ├── Lasso
+│   │   ├── LassoCV
+│   │   ├── ElasticNet
+│   │   ├── ElasticNetCV
+│   │   ├── BayesianRidge
+│   │   ├── HuberRegressor
+│   │   ├── RANSACRegressor
+│   │   └── SGDRegressor
+│   │
+│   └── Classification
+│       ├── LogisticRegression
+│       ├── LogisticRegressionCV
+│       ├── SGDClassifier
+│       ├── Perceptron
+│       ├── PassiveAggressiveClassifier
+│       └── PassiveAggressiveRegressor
+│
+├── tree
+│   ├── DecisionTreeClassifier
+│   ├── DecisionTreeRegressor
+│   ├── export_graphviz
+│   └── plot_tree
+│
+├── ensemble
+│   │
+│   ├── Bagging
+│   │   ├── RandomForestClassifier
+│   │   ├── RandomForestRegressor
+│   │   ├── ExtraTreesClassifier
+│   │   ├── ExtraTreesRegressor
+│   │   ├── BaggingClassifier
+│   │   └── BaggingRegressor
+│   │
+│   ├── Boosting
+│   │   ├── AdaBoostClassifier
+│   │   ├── AdaBoostRegressor
+│   │   ├── GradientBoostingClassifier
+│   │   ├── GradientBoostingRegressor
+│   │   ├── HistGradientBoostingClassifier
+│   │   └── HistGradientBoostingRegressor
+│   │
+│   └── Voting
+│       ├── VotingClassifier
+│       ├── VotingRegressor
+│       ├── StackingClassifier
+│       └── StackingRegressor
+│
+├── svm
+│   ├── SVC
+│   ├── SVR
+│   ├── LinearSVC
+│   ├── LinearSVR
+│   ├── NuSVC
+│   ├── NuSVR
+│   └── OneClassSVM
+│
+├── neighbors
+│   ├── KNeighborsClassifier
+│   ├── KNeighborsRegressor
+│   ├── RadiusNeighborsClassifier
+│   ├── RadiusNeighborsRegressor
+│   ├── NearestNeighbors
+│   └── LocalOutlierFactor
+│
+├── naive_bayes
+│   ├── GaussianNB
+│   ├── MultinomialNB
+│   ├── BernoulliNB
+│   ├── ComplementNB
+│   └── CategoricalNB
+│
+├── cluster
+│   ├── KMeans
+│   ├── MiniBatchKMeans
+│   ├── DBSCAN
+│   ├── HDBSCAN
+│   ├── AgglomerativeClustering
+│   ├── MeanShift
+│   ├── OPTICS
+│   ├── SpectralClustering
+│   ├── Birch
+│   └── AffinityPropagation
+│
+├── mixture
+│   ├── GaussianMixture
+│   └── BayesianGaussianMixture
+│
+├── decomposition
+│   ├── PCA
+│   ├── IncrementalPCA
+│   ├── KernelPCA
+│   ├── SparsePCA
+│   ├── TruncatedSVD
+│   ├── FastICA
+│   ├── NMF
+│   ├── DictionaryLearning
+│   └── MiniBatchDictionaryLearning
+│
+├── manifold
+│   ├── TSNE
+│   ├── Isomap
+│   ├── MDS
+│   ├── SpectralEmbedding
+│   └── LocallyLinearEmbedding
+│
+├── neural_network
+│   ├── MLPClassifier
+│   └── MLPRegressor
+│
+├── multiclass
+│   ├── OneVsRestClassifier
+│   ├── OneVsOneClassifier
+│   └── OutputCodeClassifier
+│
+├── multioutput
+│   ├── MultiOutputClassifier
+│   ├── MultiOutputRegressor
+│   ├── ClassifierChain
+│   └── RegressorChain
+│
+├── calibration
+│   ├── CalibratedClassifierCV
+│   └── CalibrationDisplay
+│
+├── inspection
+│   ├── permutation_importance
+│   ├── PartialDependenceDisplay
+│   └── DecisionBoundaryDisplay
+│
+├── dummy
+│   ├── DummyClassifier
+│   └── DummyRegressor
+│
+└── utils
+    ├── shuffle
+    ├── resample
+    ├── check_array
+    └── compute_class_weight
