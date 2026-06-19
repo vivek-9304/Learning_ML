@@ -1,41 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predictor</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loan Decision Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Loan Approval Predictor</h1>
-    <form action="/predict" method="post">
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
-        <label for="education">Education:</label>
-        <select id="education" name="education">
-            <option value="Bachelors">Bachelors</option>
-            <option value="Masters">Masters</option>
-            <option value="PhD">PhD</option>
-            <option value="Associate">Associate</option>
-            <option value="High School">High School</option>
-        </select>
-        <label for="home_ownership">Home Ownership:</label>
-        <select id="home_ownership" name="home_ownership">
-            <option value="Own">Own</option>
-            <option value="Rent">Rent</option>
-            <option value="Mortgage">Mortgage</option>
-            <option value="Other">Other</option>
-        </select>
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age">
-        <label for="person_income">Person Income:</label>
-        <input type="number" id="person_income" name="person_income">
-        <label for="employee_experience">Employee Experience:</label>
-        <input type="number" id="employee_experience" name="employee_experience">
-        <br><button type="submit">Submit</button>
+
+  <div class="ledger">
+
+    <header class="ledger__header">
+      <div class="ledger__title">
+        <span class="ledger__eyebrow">Underwriting Worksheet</span>
+        <h1>Loan Decision Desk</h1>
+      </div>
+      <div class="ledger__ref" id="ref-number">Ref. — </div>
+    </header>
+
+    <p class="ledger__intro">
+      Enter the applicant's details below. The figures are run through a trained
+      model and a decision is recorded at the bottom of the sheet.
+    </p>
+
+    <form id="loan-form" class="form">
+
+      <section class="form__section">
+        <h2 class="form__section-title">Applicant</h2>
+        <div class="form__grid">
+
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="Age" min="18" max="100" required value="28" />
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="Gender" required>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="education">Education</label>
+            <select id="education" name="Education" required>
+              <option value="High School">High School</option>
+              <option value="Associate">Associate</option>
+              <option value="Bachelor" selected>Bachelor</option>
+              <option value="Master">Master</option>
+              <option value="Doctorate">Doctorate</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="experience">Employment experience (years)</label>
+            <input type="number" id="experience" name="Employee Experience" min="0" max="60" required value="3" />
+          </div>
+
+        </div>
+      </section>
+
+      <section class="form__section">
+        <h2 class="form__section-title">Income &amp; housing</h2>
+        <div class="form__grid">
+
+          <div class="field">
+            <label for="income">Annual income (INR)</label>
+            <input type="number" id="income" name="Person Income" min="0" step="100" required value="55000" />
+          </div>
+
+          <div class="field">
+            <label for="home">Home ownership</label>
+            <select id="home" name="Home Onwership" required>
+              <option value="RENT">Rent</option>
+              <option value="MORTGAGE">Mortgage</option>
+              <option value="OWN">Own</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="form__section">
+        <h2 class="form__section-title">Loan request</h2>
+        <div class="form__grid">
+
+          <div class="field">
+            <label for="loan-amount">Loan amount (INR)</label>
+            <input type="number" id="loan-amount" name="Loan Amount" min="0" step="100" required value="12000" />
+          </div>
+
+          <div class="field">
+            <label for="loan-intent">Loan purpose</label>
+            <select id="loan-intent" name="Loan Intent" required>
+              <option value="PERSONAL">Personal</option>
+              <option value="EDUCATION">Education</option>
+              <option value="MEDICAL">Medical</option>
+              <option value="VENTURE">Venture</option>
+              <option value="HOMEIMPROVEMENT">Home improvement</option>
+              <option value="DEBTCONSOLIDATION">Debt consolidation</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="interest-rate">Interest rate (%)</label>
+            <input type="number" id="interest-rate" name="Loan interest Rate" min="0" max="40" step="0.01" required value="11.5" />
+          </div>
+
+          <div class="field">
+            <label for="loan-percentage">Loan as % of income</label>
+            <input type="number" id="loan-percentage" name="Loan percentage" min="0" max="2" step="0.01" required value="0.22" />
+          </div>
+
+        </div>
+      </section>
+
+      <section class="form__section">
+        <h2 class="form__section-title">Credit history</h2>
+        <div class="form__grid">
+
+          <div class="field">
+            <label for="credit-history">Credit history length (years)</label>
+            <input type="number" id="credit-history" name="Credit History" min="0" max="40" required value="4" />
+          </div>
+
+          <div class="field">
+            <label for="credit-score">Credit score</label>
+            <input type="number" id="credit-score" name="Credit Score" min="300" max="900" required value="650" />
+          </div>
+
+          <div class="field">
+            <label for="previous-loan">Previous loan on record</label>
+            <select id="previous-loan" name="Previous Loan" required>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="form__actions">
+        <button type="submit" id="submit-btn" class="btn">Run underwriting</button>
+        <span class="form__hint">Submits the worksheet to the local prediction service</span>
+      </div>
+
     </form>
+
+    <section id="result" class="result" hidden>
+      <div class="result__stamp" id="stamp">
+        <span id="stamp-text">APPROVED</span>
+      </div>
+      <div class="result__details">
+        <p class="result__line"><span>Decision</span><strong id="decision-text">—</strong></p>
+        <p class="result__line"><span>Confidence</span><strong id="confidence-text">—</strong></p>
+        <p class="result__note">
+          This is an automated estimate from a model trained on historical data.
+          It is not a final lending decision.
+        </p>
+      </div>
+    </section>
+
+    <section id="error-box" class="error" hidden>
+      Could not reach the prediction service. Make sure <code>app.py</code> is running
+      on <code>http://127.0.0.1:5000</code>.
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
