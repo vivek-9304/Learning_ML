@@ -1,0 +1,96 @@
+Roadmap for MlOps :
+
+1. Python
+    ↓
+2. Data Analysis
+   (NumPy, Pandas)
+    ↓
+3. Data Visualization
+   (Matplotlib, Seaborn)
+    ↓
+4. Machine Learning
+   (Scikit-Learn)
+    ↓
+5. Build ML Projects
+    ↓
+6. Git & GitHub
+    ↓
+7. Software Engineering Basics
+   (Project Structure, OOP)
+    ↓
+8. FastAPI / Flask
+   (Make ML Model Accessible)
+    ↓
+9. Docker
+   (Package Everything)
+    ↓
+10. Cloud
+   (AWS / Azure / GCP)
+    ↓
+11. CI/CD
+   (Automatic Testing & Deployment)
+    ↓
+12. MLflow
+   (Track Experiments)
+    ↓
+13. DVC
+   (Version Datasets & Models)
+    ↓
+14. Airflow / Prefect
+   (Automate Pipelines)
+    ↓
+15. Kubernetes
+   (Manage Many Containers)
+    ↓
+16. Prometheus + Grafana
+   (Monitoring)
+    ↓
+17. Advanced MLOps
+   (Feature Stores, Distributed Training)
+    ↓
+18. LLMOps
+   (LLM Deployment & Monitoring)
+
+
+Real World Interpretation :
+
+Collect Data
+    ↓
+Clean Data
+    ↓
+Train Model
+    ↓
+Track Experiments
+    ↓
+Save Best Model
+    ↓
+Create API
+    ↓
+Dockerize
+    ↓
+Deploy on Cloud
+    ↓
+Automate Deployment
+    ↓
+Monitor Performance
+    ↓
+Retrain When Needed
+
+
+What each model category does :
+
+| Category           | Purpose             |
+| ------------------ | ------------------- |
+| NumPy/Pandas       | Handle data         |
+| Scikit-Learn       | Train models        |
+| Git                | Version control     |
+| FastAPI            | Expose model as API |
+| Docker             | Package app         |
+| AWS/Azure/GCP      | Run app on internet |
+| GitHub Actions     | Auto deployment     |
+| MLflow             | Track experiments   |
+| DVC                | Track data/models   |
+| Airflow            | Automate workflows  |
+| Kubernetes         | Scale containers    |
+| Prometheus/Grafana | Monitoring          |
+
