@@ -1,0 +1,130 @@
+Docker Quick Summary
+
+1. Docker
+A tool that packages your application along with all its dependencies and environment so it runs the same everywhere.
+Problem it solves:
+    "It works on my machine but not on yours."
+
+
+2. Dockerfile
+
+A text file containing instructions for building your application environment.
+Think:
+    Recipe
+Example tasks:
+    Use Python
+    Install libraries
+    Copy code
+    Start application
+
+
+3. Docker Image
+The packaged result created from a Dockerfile.
+Think:
+Recipe → Packaged Meal Kit
+Contains:
+    Code
+    Python/Java runtime
+    Libraries
+    Configurations
+    Not running yet.
+
+
+4. Docker Container
+A running instance of an image.
+Think:
+    Meal Kit → Cooked Food
+or
+    Class → Object
+    Image → Container
+One image can create many containers.
+
+
+5. Docker Engine
+The actual software that manages everything.
+Responsibilities:
+    Build images
+    Run containers
+    Stop containers
+    Delete containers
+Think:
+    Engine = Factory Manager
+
+
+6. Docker CLI
+Commands you type.
+Examples:
+    docker build
+    docker run
+    docker stop
+Think:
+    CLI = Remote Control
+    Engine = Machine
+
+
+7. Docker Hub
+Online repository of ready-made images.
+Think:
+    GitHub for Docker Images
+Contains images for:
+    Python
+    MySQL
+    PostgreSQL
+    MongoDB
+    Redis
+    Ubuntu
+
+
+8. Volumes
+Permanent storage for containers.
+Without volume:
+    Container Deleted
+    ↓
+    Data Lost
+With volume:
+    Container Deleted
+    ↓
+    Data Safe
+Think:
+    Container = Hotel Room
+    Volume = Bank Locker
+
+
+9. Networks
+Allow containers to communicate with each other.
+Example:
+Frontend
+   ↓
+Backend
+   ↓
+Database
+Without networking, they cannot talk.
+
+
+10. Docker Compose
+Manages multiple containers together.
+Without Compose:
+    Start Frontend
+    Start Backend
+    Start Database
+    Start Redis
+...
+With Compose:
+    docker compose up
+    Everything starts together.
+Think:
+    Docker = One Container
+    Compose = Complete Application
+
+
+11. Kubernetes
+Manages hundreds or thousands of containers in production.
+Handles:
+    Auto restart
+    Auto scaling
+    Load balancing
+    Deployment
+Think:
+    Docker = One Restaurant
+    Compose = One Restaurant Building
+    Kubernetes = Entire Restaurant Chain
