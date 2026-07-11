@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5000/predict";
+const API_URL = "http://127.0.0.1:8000/predict";
  
 const form = document.getElementById("loan-form");
 const submitBtn = document.getElementById("submit-btn");
