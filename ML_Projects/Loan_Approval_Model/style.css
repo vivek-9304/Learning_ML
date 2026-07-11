@@ -1,35 +1,371 @@
+:root {
+  --ink-900: #1c2333;
+  --ink-700: #2c3650;
+  --parchment: #f6f1e7;
+  --parchment-line: #d8cfba;
+  --gold: #c79a4b;
+  --stamp-green: #2f6f4f;
+  --stamp-red: #a3372b;
+ 
+  --serif: "Source Serif 4", Georgia, serif;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+ 
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;}
-h1 {
-    color: #2d1a63;
+  background-color: var(--ink-900);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(199, 154, 75, 0.07), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(199, 154, 75, 0.05), transparent 45%);
+  color: var(--ink-900);
+  font-family: var(--mono);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px 80px;
+}
+ 
+/* ---------------------------------------------------------
+   The "ledger" sheet sitting on the dark desk background
+   --------------------------------------------------------- */
+.ledger {
+  width: 100%;
+  max-width: 720px;
+  background: var(--parchment);
+  border-radius: 4px;
+  padding: 40px 44px 48px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 30px 60px -20px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+ 
+.ledger::before {
+  /* subtle top accent line, like a letterhead rule */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 44px;
+  right: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent 70%);
+}
+ 
+/* ---------------------------------------------------------
+   Header
+   --------------------------------------------------------- */
+.ledger__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--ink-900);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+ 
+.ledger__eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+ 
+.ledger__title h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+ 
+.ledger__ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-700);
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+ 
+.ledger__intro {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-700);
+  margin: 0 0 28px;
+  max-width: 56ch;
+}
+ 
+/* ---------------------------------------------------------
+   Form sections
+   --------------------------------------------------------- */
+.form__section {
+  margin-bottom: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--parchment-line);
+}
+ 
+.form__section:first-of-type {
+  border-top: 1px solid var(--parchment-line);
+}
+ 
+.form__section-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+  margin: 0 0 16px;
+}
+ 
+.form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 24px;
+}
+ 
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.field label {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink-900);
+}
+ 
+.field input,
+.field select {
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--ink-900);
+  border-radius: 2px;
+  background: #fffdf8;
+  color: var(--ink-900);
+  outline-offset: 2px;
+}
+ 
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 2px solid var(--gold);
+}
+ 
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-900) 50%),
+                     linear-gradient(135deg, var(--ink-900) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+ 
+/* ---------------------------------------------------------
+   Submit action
+   --------------------------------------------------------- */
+.form__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+ 
+.btn {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--parchment);
+  background: var(--ink-900);
+  border: none;
+  border-radius: 2px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+ 
+.btn:hover {
+  background: var(--ink-700);
+}
+ 
+.btn:active {
+  transform: translateY(1px);
+}
+ 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+ 
+.form__hint {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--ink-700);
+  font-style: italic;
+}
+ 
+/* ---------------------------------------------------------
+   Result block + decision stamp (signature element)
+   --------------------------------------------------------- */
+.result {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 2px solid var(--ink-900);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+ 
+.result__stamp {
+  flex-shrink: 0;
+  width: 132px;
+  height: 132px;
+  border: 4px solid var(--stamp-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: rotate(-8deg);
+  color: var(--stamp-green);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  animation: stamp-in 0.35s ease-out;
+}
+ 
+.result__stamp::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+ 
+.result__stamp.is-declined {
+  border-color: var(--stamp-red);
+  color: var(--stamp-red);
+}
+ 
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(1.4);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+ 
+.result__details {
+  flex: 1;
+  min-width: 220px;
+}
+ 
+.result__line {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 14px;
+  border-bottom: 1px dashed var(--parchment-line);
+  padding: 8px 0;
+  margin: 0;
+}
+ 
+.result__line span {
+  color: var(--ink-700);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 11px;
+  align-self: center;
+}
+ 
+.result__line strong {
+  font-size: 16px;
+}
+ 
+.result__note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-700);
+  margin: 14px 0 0;
+  line-height: 1.5;
+}
+ 
+/* ---------------------------------------------------------
+   Error box
+   --------------------------------------------------------- */
+.error {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid var(--stamp-red);
+  border-radius: 2px;
+  background: rgba(163, 55, 43, 0.08);
+  color: var(--stamp-red);
+  font-size: 13px;
+  font-family: var(--mono);
+}
+ 
+.error code {
+  background: rgba(163, 55, 43, 0.12);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+ 
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .ledger {
+    padding: 28px 22px 36px;
+  }
+ 
+  .ledger__title h1 {
+    font-size: 26px;
+  }
+ 
+  .form__grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .result {
+    flex-direction: column;
     text-align: center;
-    margin-bottom: 30px;}
-form {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fbfbc4; }
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  }
+ 
+  .result__line {
+    text-align: left;
+  }
 }
-input[type="text"], input[type="number"], select {
-    width: 16%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 3px solid #8e788c;
-    border-radius: 4px;
-}
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #0056b3;
+ 
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .result__stamp {
+    animation: none;
+  }
 }
