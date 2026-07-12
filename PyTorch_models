@@ -1,0 +1,317 @@
+MAJORITY OF THE MODELS TO STUDY
+
+torch
+│
+├── tensor
+│   ├── Tensor
+│   ├── tensor()
+│   ├── zeros()
+│   ├── ones()
+│   ├── rand()
+│   ├── randint()
+│   ├── eye()
+│   ├── arange()
+│   ├── linspace()
+│   ├── reshape()
+│   ├── transpose()
+│   ├── squeeze()
+│   ├── unsqueeze()
+│   ├── stack()
+│   ├── cat()
+│   ├── chunk()
+│   ├── split()
+│   ├── view()
+│   └── clone()
+│
+├── nn
+│   │
+│   ├── Module
+│   │
+│   ├── Linear Layers
+│   │   ├── Linear
+│   │   ├── Bilinear
+│   │   ├── Identity
+│   │   └── LazyLinear
+│   │
+│   ├── Convolution Layers
+│   │   ├── Conv1d
+│   │   ├── Conv2d
+│   │   ├── Conv3d
+│   │   ├── ConvTranspose1d
+│   │   ├── ConvTranspose2d
+│   │   ├── ConvTranspose3d
+│   │   ├── LazyConv1d
+│   │   ├── LazyConv2d
+│   │   └── LazyConv3d
+│   │
+│   ├── Pooling Layers
+│   │   ├── MaxPool1d
+│   │   ├── MaxPool2d
+│   │   ├── MaxPool3d
+│   │   ├── AvgPool1d
+│   │   ├── AvgPool2d
+│   │   ├── AvgPool3d
+│   │   ├── AdaptiveAvgPool1d
+│   │   ├── AdaptiveAvgPool2d
+│   │   ├── AdaptiveAvgPool3d
+│   │   ├── AdaptiveMaxPool1d
+│   │   ├── AdaptiveMaxPool2d
+│   │   └── AdaptiveMaxPool3d
+│   │
+│   ├── Padding
+│   │   ├── ZeroPad2d
+│   │   ├── ReflectionPad2d
+│   │   ├── ReplicationPad2d
+│   │   └── ConstantPad2d
+│   │
+│   ├── Activation Functions
+│   │   ├── ReLU
+│   │   ├── ReLU6
+│   │   ├── LeakyReLU
+│   │   ├── PReLU
+│   │   ├── ELU
+│   │   ├── GELU
+│   │   ├── SELU
+│   │   ├── CELU
+│   │   ├── SiLU (Swish)
+│   │   ├── Mish
+│   │   ├── Sigmoid
+│   │   ├── Tanh
+│   │   ├── Softmax
+│   │   ├── LogSoftmax
+│   │   ├── Softplus
+│   │   ├── Softsign
+│   │   ├── Hardtanh
+│   │   ├── Hardswish
+│   │   ├── Hardsigmoid
+│   │   └── GLU
+│   │
+│   ├── Normalization
+│   │   ├── BatchNorm1d
+│   │   ├── BatchNorm2d
+│   │   ├── BatchNorm3d
+│   │   ├── LayerNorm
+│   │   ├── InstanceNorm1d
+│   │   ├── InstanceNorm2d
+│   │   ├── InstanceNorm3d
+│   │   ├── GroupNorm
+│   │   ├── LocalResponseNorm
+│   │   └── RMSNorm
+│   │
+│   ├── Dropout
+│   │   ├── Dropout
+│   │   ├── Dropout1d
+│   │   ├── Dropout2d
+│   │   ├── Dropout3d
+│   │   ├── AlphaDropout
+│   │   └── FeatureAlphaDropout
+│   │
+│   ├── Recurrent Layers
+│   │   ├── RNN
+│   │   ├── RNNCell
+│   │   ├── LSTM
+│   │   ├── LSTMCell
+│   │   ├── GRU
+│   │   └── GRUCell
+│   │
+│   ├── Transformer
+│   │   ├── Transformer
+│   │   ├── TransformerEncoder
+│   │   ├── TransformerEncoderLayer
+│   │   ├── TransformerDecoder
+│   │   ├── TransformerDecoderLayer
+│   │   └── MultiheadAttention
+│   │
+│   ├── Embeddings
+│   │   ├── Embedding
+│   │   ├── EmbeddingBag
+│   │   └── OneHot
+│   │
+│   ├── Distance
+│   │   ├── CosineSimilarity
+│   │   ├── PairwiseDistance
+│   │   └── TripletMarginLoss
+│   │
+│   ├── Loss Functions
+│   │   ├── MSELoss
+│   │   ├── L1Loss
+│   │   ├── SmoothL1Loss
+│   │   ├── HuberLoss
+│   │   ├── CrossEntropyLoss
+│   │   ├── BCEWithLogitsLoss
+│   │   ├── BCELoss
+│   │   ├── NLLLoss
+│   │   ├── KLDivLoss
+│   │   ├── PoissonNLLLoss
+│   │   ├── CTCLoss
+│   │   ├── MarginRankingLoss
+│   │   ├── CosineEmbeddingLoss
+│   │   ├── TripletMarginLoss
+│   │   ├── MultiMarginLoss
+│   │   └── MultiLabelSoftMarginLoss
+│   │
+│   ├── Containers
+│   │   ├── Sequential
+│   │   ├── ModuleList
+│   │   ├── ModuleDict
+│   │   ├── ParameterList
+│   │   └── ParameterDict
+│   │
+│   └── Utilities
+│       ├── Flatten
+│       ├── Unflatten
+│       ├── Upsample
+│       ├── PixelShuffle
+│       ├── Fold
+│       └── Unfold
+│
+├── nn.functional (F)
+│   ├── relu
+│   ├── gelu
+│   ├── sigmoid
+│   ├── tanh
+│   ├── softmax
+│   ├── log_softmax
+│   ├── conv1d
+│   ├── conv2d
+│   ├── conv3d
+│   ├── linear
+│   ├── dropout
+│   ├── batch_norm
+│   ├── layer_norm
+│   ├── interpolate
+│   ├── mse_loss
+│   ├── cross_entropy
+│   ├── binary_cross_entropy
+│   └── nll_loss
+│
+├── optim
+│   ├── SGD
+│   ├── Adam
+│   ├── AdamW
+│   ├── Adamax
+│   ├── RMSprop
+│   ├── Adagrad
+│   ├── Adadelta
+│   ├── ASGD
+│   ├── Rprop
+│   ├── SparseAdam
+│   ├── LBFGS
+│   └── NAdam
+│
+├── optim.lr_scheduler
+│   ├── StepLR
+│   ├── MultiStepLR
+│   ├── ExponentialLR
+│   ├── CosineAnnealingLR
+│   ├── CosineAnnealingWarmRestarts
+│   ├── ReduceLROnPlateau
+│   ├── CyclicLR
+│   ├── OneCycleLR
+│   ├── LinearLR
+│   ├── ConstantLR
+│   └── PolynomialLR
+│
+├── utils
+│   ├── data
+│   │   ├── Dataset
+│   │   ├── DataLoader
+│   │   ├── TensorDataset
+│   │   ├── ConcatDataset
+│   │   ├── Subset
+│   │   ├── RandomSampler
+│   │   ├── SequentialSampler
+│   │   ├── BatchSampler
+│   │   └── DistributedSampler
+│   │
+│   ├── tensorboard
+│   └── checkpoint
+│
+├── autograd
+│   ├── Variable
+│   ├── grad()
+│   ├── Function
+│   ├── no_grad()
+│   ├── enable_grad()
+│   └── inference_mode()
+│
+├── cuda
+│   ├── is_available()
+│   ├── device_count()
+│   ├── current_device()
+│   ├── synchronize()
+│   └── amp
+│       ├── autocast
+│       └── GradScaler
+│
+├── distributed
+│   ├── DistributedDataParallel
+│   ├── init_process_group
+│   └── rpc
+│
+├── jit
+│   ├── script
+│   ├── trace
+│   └── freeze
+│
+├── compile
+│   └── torch.compile()
+│
+├── quantization
+│   ├── prepare
+│   ├── convert
+│   ├── quantize_dynamic
+│   └── quantize_per_tensor
+│
+├── hub
+│   ├── load()
+│   └── list()
+│
+├── onnx
+│   ├── export()
+│   └── dynamo_export()
+│
+└── special
+    ├── erf
+    ├── gamma
+    ├── digamma
+    ├── softmax
+    └── logit
+
+
+BUT ACCORDING TO 80-20 RULE 
+AS BEGINEER THESE SHOULD BE MASTERED FIRST
+
+torch
+│
+├── Tensor
+├── nn
+│   ├── Module
+│   ├── Linear
+│   ├── Conv2d
+│   ├── ReLU
+│   ├── GELU
+│   ├── BatchNorm
+│   ├── Dropout
+│   ├── LSTM
+│   ├── Embedding
+│   ├── Transformer
+│   ├── MultiheadAttention
+│   ├── Sequential
+│   └── CrossEntropyLoss
+│
+├── nn.functional
+├── optim
+│   ├── SGD
+│   ├── Adam
+│   ├── AdamW
+│   └── lr_scheduler
+│
+├── utils.data
+│   ├── Dataset
+│   └── DataLoader
+│
+├── autograd
+├── cuda
+├── compile
+└── onnx
