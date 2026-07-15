@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prognosis Chart · Breast Cancer Outcome Estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bc_style.css" />
+</head>
+<body>
+ 
+  <!-- ambient ECG watermark -->
+  <svg class="ecg-watermark" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+    <path id="ecgPath" d="M0,100 L200,100 L230,100 L245,40 L260,160 L275,100 L320,100 L900,100 L930,100 L945,40 L960,160 L975,100 L1020,100 L1200,100" />
+  </svg>
+ 
+  <header class="hero">
+    <p class="eyebrow">Clinical Decision Support · Prototype</p>
+    <h1>The Prognosis Chart</h1>
+    <p class="hero-sub">A calm, careful read of fifteen clinical markers — staged the way a tumor board would review them — to estimate patient survival status.</p>
+    <p class="hero-note">For research and educational use only. Not a substitute for clinical judgment.</p>
+  </header>
+ 
+  <main class="chart-wrap">
+    <form id="prognosisForm" class="chart" autocomplete="off">
+ 
+      <!-- SECTION 1 -->
+      <section class="chart-section" style="--accent:#8FA688">
+        <div class="section-label">
+          <span class="section-index">I</span>
+          <div>
+            <h2>Patient Profile</h2>
+            <p>Who we're looking at</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="Age" min="18" max="110" placeholder="e.g. 54" required />
+            <span class="unit">years</span>
+          </div>
+          <div class="field">
+            <label for="race">Race</label>
+            <select id="race" name="Race" required>
+              <option value="" disabled selected>Select…</option>
+              <option>White</option>
+              <option>Black</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="marital">Marital Status</label>
+            <select id="marital" name="Marital Status" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Married</option>
+              <option>Divorced</option>
+              <option>Single</option>
+              <option>Widowed</option>
+              <option>Separated</option>
+            </select>
+          </div>
+        </div>
+      </section>
+ 
+      <!-- SECTION 2 -->
+      <section class="chart-section" style="--accent:#C98F8F">
+        <div class="section-label">
+          <span class="section-index">II</span>
+          <div>
+            <h2>Tumor Staging</h2>
+            <p>Size and spread at diagnosis</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="tstage">T Stage</label>
+            <select id="tstage" name="T Stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option>T1</option><option>T2</option><option>T3</option><option>T4</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="nstage">N Stage</label>
+            <select id="nstage" name="N Stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option>N1</option><option>N2</option><option>N3</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sixthstage">6th Stage</label>
+            <select id="sixthstage" name="6th Stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option>IIA</option><option>IIB</option><option>IIIA</option><option>IIIB</option><option>IIIC</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="astage">A Stage</label>
+            <select id="astage" name="A Stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Regional</option>
+              <option>Distant</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="tumorsize">Tumor Size</label>
+            <input type="number" id="tumorsize" name="Tumor Size" min="0" step="0.1" placeholder="e.g. 22" required />
+            <span class="unit">mm</span>
+          </div>
+        </div>
+      </section>
+ 
+      <!-- SECTION 3 -->
+      <section class="chart-section" style="--accent:#C9A961">
+        <div class="section-label">
+          <span class="section-index">III</span>
+          <div>
+            <h2>Pathology &amp; Receptors</h2>
+            <p>How the tissue behaves</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="differentiate">Differentiate</label>
+            <select id="differentiate" name="differentiate" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Well differentiated</option>
+              <option>Moderately differentiated</option>
+              <option>Poorly differentiated</option>
+              <option>Undifferentiated</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="grade">Grade</label>
+            <select id="grade" name="Grade" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="anaplastic; Grade IV">Anaplastic; Grade IV</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="estrogen">Estrogen Status</label>
+            <select id="estrogen" name="Estrogen Status" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Positive</option>
+              <option>Negative</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="progesterone">Progesterone Status</label>
+            <select id="progesterone" name="Progesterone Status" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Positive</option>
+              <option>Negative</option>
+            </select>
+          </div>
+        </div>
+      </section>
+ 
+      <!-- SECTION 4 -->
+      <section class="chart-section" style="--accent:#8FA688">
+        <div class="section-label">
+          <span class="section-index">IV</span>
+          <div>
+            <h2>Nodal Findings</h2>
+            <p>Lymph node involvement</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="nodesexamined">Regional Node Examined</label>
+            <input type="number" id="nodesexamined" name="Regional Node Examined" min="0" placeholder="e.g. 14" required />
+            <span class="unit">nodes</span>
+          </div>
+          <div class="field">
+            <label for="nodespositive">Reginol Node Positive</label>
+            <input type="number" id="nodespositive" name="Reginol Node Positive" min="0" placeholder="e.g. 2" required />
+            <span class="unit">nodes</span>
+          </div>
+        </div>
+      </section>
+ 
+      <!-- SECTION 5 -->
+      <section class="chart-section" style="--accent:#C98F8F">
+        <div class="section-label">
+          <span class="section-index">V</span>
+          <div>
+            <h2>Follow-up</h2>
+            <p>Observed time on record</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="survivalmonths">Survival Months</label>
+            <input type="number" id="survivalmonths" name="Survival Months" min="0" placeholder="e.g. 63" required />
+            <span class="unit">months</span>
+          </div>
+        </div>
+      </section>
+ 
+      <div class="submit-row">
+        <button type="submit" id="submitBtn">
+          <span class="btn-label">Read the chart</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <p class="submit-hint" id="formHint"></p>
+      </div>
+    </form>
+ 
+    <!-- RESULT PANEL -->
+    <aside class="result-panel" id="resultPanel" aria-live="polite">
+      <div class="result-empty" id="resultEmpty">
+        <div class="pulse-dot"></div>
+        <p>Your estimate will appear here once the chart is complete.</p>
+      </div>
+      <div class="result-content" id="resultContent" hidden>
+        <p class="result-eyebrow">Estimated Outcome</p>
+        <h3 id="resultLabel">—</h3>
+        <div class="confidence-bar">
+          <div class="confidence-fill" id="confidenceFill"></div>
+        </div>
+        <p class="confidence-text" id="confidenceText"></p>
+        <p class="result-footnote">This estimate reflects statistical patterns in historical records and is not a diagnosis. Please discuss all results with a treating oncologist.</p>
+      </div>
+    </aside>
+  </main>
+ 
+  <footer class="site-footer">
+    <p>Built for exploratory review · Model served locally via FastAPI</p>
+  </footer>
+ 
+  <script src="bc_script.js"></script>
+</body>
+</html>
