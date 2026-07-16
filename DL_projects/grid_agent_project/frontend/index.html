@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GRIDWATCH // Agent Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="console">
+
+  <!-- ============ HEADER ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◈</span>
+      <div class="brand-text">
+        <h1>GRIDWATCH</h1>
+        <span class="brand-sub">tabular Q-learning / grid navigation console</span>
+      </div>
+    </div>
+    <div class="conn">
+      <label for="apiBase" class="conn-label">API TARGET</label>
+      <select id="apiBase">
+        <option value="http://localhost:8000">FastAPI :8000</option>
+        <option value="http://localhost:5000">Flask :5000</option>
+      </select>
+      <span id="connDot" class="conn-dot" title="connection status"></span>
+    </div>
+  </header>
+
+  <!-- ============ BODY ============ -->
+  <main class="body">
+
+    <!-- ---- LEFT: control panel ---- -->
+    <aside class="panel">
+
+      <section class="panel-block">
+        <h2 class="block-title">01 / new environment</h2>
+        <div class="field-row">
+          <label>width</label>
+          <input id="cfgWidth" type="number" min="4" max="24" value="10" />
+        </div>
+        <div class="field-row">
+          <label>height</label>
+          <input id="cfgHeight" type="number" min="4" max="24" value="10" />
+        </div>
+        <div class="field-row">
+          <label>obstacles</label>
+          <input id="cfgObstacle" type="range" min="0" max="0.5" step="0.05" value="0.2" />
+          <span id="cfgObstacleVal" class="field-val">0.20</span>
+        </div>
+        <button id="btnReset" class="btn btn-primary">generate grid</button>
+      </section>
+
+      <section class="panel-block">
+        <h2 class="block-title">02 / training</h2>
+        <div class="field-row">
+          <label>episodes</label>
+          <input id="cfgEpisodes" type="number" min="10" max="5000" value="300" />
+        </div>
+        <button id="btnTrain" class="btn">run training</button>
+        <div class="stat-line"><span>episodes trained</span><b id="statEpisodes">0</b></div>
+        <div class="stat-line"><span>epsilon</span><b id="statEpsilon">1.000</b></div>
+        <div class="stat-line"><span>mean reward (last 20)</span><b id="statReward">—</b></div>
+      </section>
+
+      <section class="panel-block">
+        <h2 class="block-title">03 / playback</h2>
+        <button id="btnPath" class="btn">trace learned path</button>
+        <div class="dpad" aria-label="manual step controls">
+          <button class="dpad-btn dpad-up"    data-action="0">▲</button>
+          <button class="dpad-btn dpad-left"  data-action="2">◀</button>
+          <button class="dpad-btn dpad-right" data-action="3">▶</button>
+          <button class="dpad-btn dpad-down"  data-action="1">▼</button>
+        </div>
+        <div class="stat-line"><span>last reward</span><b id="statLastReward">—</b></div>
+      </section>
+
+      <section class="panel-block legend">
+        <h2 class="block-title">legend</h2>
+        <div class="legend-row"><span class="swatch swatch-agent"></span> agent</div>
+        <div class="legend-row"><span class="swatch swatch-start"></span> start</div>
+        <div class="legend-row"><span class="swatch swatch-goal"></span> goal</div>
+        <div class="legend-row"><span class="swatch swatch-obstacle"></span> obstacle</div>
+        <div class="legend-row"><span class="swatch swatch-trail"></span> path trace</div>
+      </section>
+
+    </aside>
+
+    <!-- ---- RIGHT: grid display ---- -->
+    <section class="stage">
+      <div class="stage-header">
+        <span id="stageStatus" class="stage-status">idle — awaiting grid</span>
+        <span id="stageCoords" class="stage-coords">agent (0,0)</span>
+      </div>
+      <div id="gridWrap" class="grid-wrap">
+        <div id="grid" class="grid"></div>
+      </div>
+      <div class="stage-footer">
+        <span>use arrow keys or the D-pad to move the agent manually</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="statusbar">
+    <span id="logLine">system ready.</span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
