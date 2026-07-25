@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RainCast — Will It Rain?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="rain_s.css">
+</head>
+<body>
+
+<div class="sky" aria-hidden="true">
+  <div class="cloud cloud--1">☁️</div>
+  <div class="cloud cloud--2">☁️</div>
+  <div class="cloud cloud--3">☁️</div>
+  <div class="sun" id="bgSun">☀️</div>
+  <div class="drops" id="bgDrops"></div>
+</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="logo">
+      <span class="logo-badge">🌦️</span>
+      <div>
+        <h1>RainCast</h1>
+        <p>Feed it your link stats — it'll tell you if rain's coming</p>
+      </div>
+    </div>
+    <div class="mood-chip" id="clockChip">
+      <span>🕐</span>
+      <span id="clockText">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="form-col">
+    <div class="toolbar">
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-text"><span id="filledCount">0</span> / <span id="totalCount">35</span> filled in</span>
+      </div>
+      <div class="toolbar-actions">
+        <button type="button" class="btn btn--ghost" id="sampleBtn">🎲 Try sample data</button>
+        <button type="button" class="btn btn--ghost" id="resetBtn">🧹 Clear all</button>
+      </div>
+    </div>
+
+    <form id="predictForm" autocomplete="off">
+
+      <!-- SECTION 1 -->
+      <fieldset class="panel" data-panel="meta">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="true">
+            <span class="panel-icon">📅</span>
+            <span class="panel-title">When &amp; where</span>
+            <span class="panel-count" data-count-for="meta">0/4</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body">
+          <div class="field">
+            <label for="timestamp">Timestamp</label>
+            <input type="datetime-local" id="timestamp" name="timestamp" data-field>
+          </div>
+          <div class="field">
+            <label for="station">Ground station ID</label>
+            <input type="text" id="station" name="station" placeholder="e.g. GS-07" data-field>
+          </div>
+          <div class="field">
+            <label for="climate">ITU-R rain climate zone</label>
+            <select id="climate" name="climate" data-field>
+              <option value="">Pick a zone…</option>
+              <option>A</option><option>B</option><option>C</option><option>D</option>
+              <option>E</option><option>F</option><option>G</option><option>H</option>
+              <option>J</option><option>K</option><option>L</option><option>M</option>
+              <option>N</option><option>P</option><option>Q</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="simulation_id">Simulation / run ID</label>
+            <input type="text" id="simulation_id" name="simulation_id" placeholder="SIM-2026-0142" data-field>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- SECTION 2 -->
+      <fieldset class="panel" data-panel="geometry">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="false">
+            <span class="panel-icon">📡</span>
+            <span class="panel-title">Link geometry</span>
+            <span class="panel-count" data-count-for="geometry">0/6</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body is-collapsed">
+          <div class="field">
+            <label for="carrier_frequency_ghz">Carrier frequency <em>(GHz)</em></label>
+            <input type="number" step="0.01" id="carrier_frequency_ghz" name="carrier_frequency_ghz" placeholder="20.2" data-field>
+          </div>
+          <div class="field">
+            <label for="frequency_ghz">Link frequency <em>(GHz)</em></label>
+            <input type="number" step="0.01" id="frequency_ghz" name="frequency_ghz" placeholder="20.2" data-field>
+          </div>
+          <div class="field">
+            <label for="elevation_angle_deg">Elevation angle <em>(°)</em></label>
+            <input type="number" step="0.1" min="0" max="90" id="elevation_angle_deg" name="elevation_angle_deg" placeholder="42.5" data-field>
+          </div>
+          <div class="field">
+            <label for="slant_range_km">Slant range <em>(km)</em></label>
+            <input type="number" step="0.1" id="slant_range_km" name="slant_range_km" placeholder="38500" data-field>
+          </div>
+          <div class="field">
+            <label for="rain_height_km">Rain height <em>(km)</em></label>
+            <input type="number" step="0.01" id="rain_height_km" name="rain_height_km" placeholder="3.6" data-field>
+          </div>
+          <div class="field">
+            <label for="effective_path_length_km">Effective path length <em>(km)</em></label>
+            <input type="number" step="0.01" id="effective_path_length_km" name="effective_path_length_km" placeholder="5.2" data-field>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- SECTION 3 -->
+      <fieldset class="panel" data-panel="signal">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="false">
+            <span class="panel-icon">📶</span>
+            <span class="panel-title">Signal &amp; attenuation</span>
+            <span class="panel-count" data-count-for="signal">0/5</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body is-collapsed">
+          <div class="field">
+            <label for="received_snr_db">Received SNR <em>(dB)</em></label>
+            <input type="number" step="0.01" id="received_snr_db" name="received_snr_db" placeholder="14.2" data-field>
+          </div>
+          <div class="field">
+            <label for="fspl_db">Free-space path loss <em>(dB)</em></label>
+            <input type="number" step="0.01" id="fspl_db" name="fspl_db" placeholder="210.4" data-field>
+          </div>
+          <div class="field">
+            <label for="gaseous_attenuation_db">Gaseous attenuation <em>(dB)</em></label>
+            <input type="number" step="0.01" id="gaseous_attenuation_db" name="gaseous_attenuation_db" placeholder="0.8" data-field>
+          </div>
+          <div class="field">
+            <label for="excess_attenuation_db">Excess attenuation <em>(dB)</em></label>
+            <input type="number" step="0.01" id="excess_attenuation_db" name="excess_attenuation_db" placeholder="2.1" data-field>
+          </div>
+          <div class="field">
+            <label for="specific_attenuation_db_per_km">Specific attenuation <em>(dB/km)</em></label>
+            <input type="number" step="0.001" id="specific_attenuation_db_per_km" name="specific_attenuation_db_per_km" placeholder="0.42" data-field>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- SECTION 4 -->
+      <fieldset class="panel" data-panel="itu">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="false">
+            <span class="panel-icon">🌧️</span>
+            <span class="panel-title">ITU-R rain model</span>
+            <span class="panel-count" data-count-for="itu">0/6</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body is-collapsed">
+          <div class="field">
+            <label for="itu_k">ITU-R P.838 coefficient <em>k</em></label>
+            <input type="number" step="0.0001" id="itu_k" name="itu_k" placeholder="0.0751" data-field>
+          </div>
+          <div class="field">
+            <label for="itu_alpha">ITU-R P.838 coefficient <em>α</em></label>
+            <input type="number" step="0.0001" id="itu_alpha" name="itu_alpha" placeholder="1.099" data-field>
+          </div>
+          <div class="field">
+            <label for="itu_R001">Rain rate exceeded 0.01% of time, R₀.₀₁ <em>(mm/hr)</em></label>
+            <input type="number" step="0.1" id="itu_R001" name="itu_R001" placeholder="42" data-field>
+          </div>
+          <div class="field">
+            <label for="itu_P_rain">Probability of rain, P<sub>rain</sub></label>
+            <input type="number" step="0.001" min="0" max="1" id="itu_P_rain" name="itu_P_rain" placeholder="0.18" data-field>
+          </div>
+          <div class="field">
+            <label for="rain_rate_mm_per_hr">Instantaneous rain rate <em>(mm/hr)</em></label>
+            <input type="number" step="0.1" id="rain_rate_mm_per_hr" name="rain_rate_mm_per_hr" placeholder="6.5" data-field>
+          </div>
+          <div class="field field--toggle">
+            <label for="rain_event">Rain gauge flag (ground truth, if known)</label>
+            <div class="toggle-row">
+              <button type="button" class="toggle-switch" id="rain_event_toggle" data-state="0" role="switch" aria-checked="false">
+                <span class="toggle-knob">☀️</span>
+              </button>
+              <span class="toggle-state" id="rain_event_label">No / unknown</span>
+              <input type="hidden" id="rain_event" name="rain_event" value="0" data-field>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- SECTION 5 -->
+      <fieldset class="panel" data-panel="env">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="false">
+            <span class="panel-icon">🌡️</span>
+            <span class="panel-title">Station &amp; seasonality</span>
+            <span class="panel-count" data-count-for="env">0/5</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body is-collapsed">
+          <div class="field">
+            <label for="gs_latitude">Station latitude <em>(°)</em></label>
+            <input type="number" step="0.0001" min="-90" max="90" id="gs_latitude" name="gs_latitude" placeholder="28.6139" data-field>
+          </div>
+          <div class="field">
+            <label for="gs_humidity">Surface humidity <em>(%)</em></label>
+            <input type="number" step="0.1" min="0" max="100" id="gs_humidity" name="gs_humidity" placeholder="78" data-field>
+          </div>
+          <div class="field">
+            <label for="gs_wv">Water vapor content <em>(kg/m²)</em></label>
+            <input type="number" step="0.01" id="gs_wv" name="gs_wv" placeholder="34.2" data-field>
+          </div>
+          <div class="field field--pair">
+            <label>Seasonal phase (from timestamp)</label>
+            <div class="pair-row">
+              <input type="number" step="0.0001" min="-1" max="1" id="season_sin" name="season_sin" placeholder="sin" data-field>
+              <input type="number" step="0.0001" min="-1" max="1" id="season_cos" name="season_cos" placeholder="cos" data-field>
+              <button type="button" class="btn btn--mini" id="deriveSeason">✨ Derive</button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- SECTION 6 -->
+      <fieldset class="panel" data-panel="rolling">
+        <legend class="panel-legend">
+          <button type="button" class="panel-toggle" aria-expanded="false">
+            <span class="panel-icon">📈</span>
+            <span class="panel-title">Rolling window stats</span>
+            <span class="panel-count" data-count-for="rolling">0/10</span>
+            <span class="chev">▾</span>
+          </button>
+        </legend>
+        <div class="panel-body is-collapsed">
+          <div class="field">
+            <label for="snr_roll_mean_5min">SNR rolling mean, 5min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_mean_5min" name="snr_roll_mean_5min" placeholder="13.9" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_roll_std_5min">SNR rolling std, 5min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_std_5min" name="snr_roll_std_5min" placeholder="0.6" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_roll_max_5min">SNR rolling max, 5min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_max_5min" name="snr_roll_max_5min" placeholder="15.1" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_roll_min_5min">SNR rolling min, 5min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_min_5min" name="snr_roll_min_5min" placeholder="12.4" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_roll_mean_30min">SNR rolling mean, 30min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_mean_30min" name="snr_roll_mean_30min" placeholder="14.0" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_roll_std_30min">SNR rolling std, 30min <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_roll_std_30min" name="snr_roll_std_30min" placeholder="0.9" data-field>
+          </div>
+          <div class="field">
+            <label for="attenuation_roll_mean">Attenuation rolling mean <em>(dB)</em></label>
+            <input type="number" step="0.01" id="attenuation_roll_mean" name="attenuation_roll_mean" placeholder="1.8" data-field>
+          </div>
+          <div class="field">
+            <label for="attenuation_roll_std">Attenuation rolling std <em>(dB)</em></label>
+            <input type="number" step="0.01" id="attenuation_roll_std" name="attenuation_roll_std" placeholder="0.4" data-field>
+          </div>
+          <div class="field">
+            <label for="attenuation_delta">Attenuation delta <em>(dB)</em></label>
+            <input type="number" step="0.01" id="attenuation_delta" name="attenuation_delta" placeholder="0.3" data-field>
+          </div>
+          <div class="field">
+            <label for="snr_delta">SNR delta <em>(dB)</em></label>
+            <input type="number" step="0.01" id="snr_delta" name="snr_delta" placeholder="-0.5" data-field>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="predict-btn" id="predictBtn">
+        <span class="predict-btn-label">🔮 Ask RainCast</span>
+        <span class="predict-btn-sub">Sends everything to your model and shows the verdict</span>
+      </button>
+    </form>
+  </section>
+
+  <aside class="result-col">
+    <div class="result-card" id="resultCard">
+
+      <div class="result-empty" id="resultEmpty">
+        <div class="empty-character">🌤️</div>
+        <p class="result-empty-title">Waiting on your telemetry!</p>
+        <p class="result-empty-sub">Fill in what you can, then hit "Ask RainCast" and your model will take it from here.</p>
+      </div>
+
+      <div class="result-live is-hidden" id="resultLive">
+        <div class="character-stage">
+          <div class="character" id="character">🌤️</div>
+          <div class="fall-drops" id="fallDrops"></div>
+        </div>
+        <p class="verdict-word" id="verdictWord">—</p>
+        <p class="verdict-conf" id="verdictConf">0% confidence</p>
+        <p class="verdict-caption" id="verdictCaption">—</p>
+        <div class="reasons" id="reasons"></div>
+      </div>
+
+      <div class="result-error is-hidden" id="resultError">
+        <div class="empty-character">🥴</div>
+        <p class="result-empty-title" id="errorTitle">Couldn't reach your model</p>
+        <p class="result-empty-sub" id="errorSub">Check the console for details.</p>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <p><strong>Heads up:</strong> this page doesn't predict anything itself — it packages up the 35 fields and POSTs them to <strong>your</strong> model's API. Open <code>script.js</code> and set <code>MODEL_API_ENDPOINT</code> to your endpoint's URL to go live.</p>
+    </div>
+  </aside>
+
+</main>
+
+<script src="rain_j.js"></script>
+</body>
+</html>
