@@ -28,3 +28,26 @@ The CSV files contain **785 columns**:
 
 ```text
 1 Label + 784 Pixel Values = 785 Columns
+
+### ⚙️ Hyperparameters Used
+
+The final model was trained using the following hyperparameters:
+
+| Hyperparameter | Value |
+|---|---:|
+| Hidden Layers | 4 |
+| Neurons per Layer | 120 |
+| Epochs | 30 |
+| Learning Rate | 0.0006436289452104737 |
+| Dropout | 0.2 |
+| Batch Size | 16 |
+| Optimizer | Adam |
+| Weight Decay | 3.9541133083734205e-05 |
+
+---
+
+### 📊 Test Accuracy
+
+The final model achieved a **test accuracy of 89.41%** on the Fashion-MNIST test dataset.
+
+**Test Accuracy: 89.41%**
