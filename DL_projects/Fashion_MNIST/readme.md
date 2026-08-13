@@ -26,10 +26,7 @@ Each pixel contains an intensity value between **0 and 255**, representing how d
 
 The CSV files contain **785 columns**:
 
-```text
-1 Label + 784 Pixel Values = 785 Columns
-
-### ⚙️ Hyperparameters Used
+## ⚙️ Hyperparameters Used
 
 The final model was trained using the following hyperparameters:
 
@@ -46,7 +43,7 @@ The final model was trained using the following hyperparameters:
 
 ---
 
-### 📊 Test Accuracy
+## 📊 Test Accuracy
 
 The final model achieved a **test accuracy of 89.41%** on the Fashion-MNIST test dataset.
 
