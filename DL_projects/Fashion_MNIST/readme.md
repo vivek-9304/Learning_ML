@@ -63,7 +63,7 @@ The final model was trained using the following hyperparameters:
 | Dropout | 0.1 | 
 | Batch Size | 64 | 
 | Optimizer | Adam | 
-| Weight Decay | 0.0009686766761403881
+| Weight Decay | 0.0009686766761403881 |
 
 ---
 
@@ -72,3 +72,24 @@ The final model was trained using the following hyperparameters:
 The final model achieved a **test accuracy of 94.39%** on the Fashion-MNIST test dataset.
 
 **Test Accuracy: 94.39%**
+
+<br><br>
+## ⚙️ Hyperparameters Used for Resnet18
+
+The final model was trained using the following hyperparameters:
+
+| Hyperparameter | Value |
+|---|---:|
+| Unfreeze Last N | 2 |
+| Learning Rate | 0.0010349477625827992 | 
+| Dropout | 0.1 | 
+| Batch Size | 128 | 
+| Weight Decay | 7.867342235038732e-06 |
+
+---
+
+## 📊 Test Accuracy by Resnet18
+
+The final model achieved a **test accuracy of 95.99%** on the Fashion-MNIST test dataset.
+
+**Test Accuracy: 95.99%**
