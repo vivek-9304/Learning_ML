@@ -1,6 +1,6 @@
-# Fashion-MNIST Classification using PyTorch ANN
+# Fashion-MNIST Classification using PyTorch ANN and CNN
 
-A simple **Artificial Neural Network (ANN)** built from scratch using **PyTorch** to classify images from the **Fashion-MNIST** dataset.
+A simple **Artificial Neural Network (ANN) and Convolutional Neural Network (CNN)** built from scratch using **PyTorch** to classify images from the **Fashion-MNIST** dataset.
 
 This project focuses on understanding the fundamental workflow of a neural network — from loading and preprocessing image data to creating a custom PyTorch `Dataset`, training an ANN using backpropagation, and evaluating its performance on unseen test data.
 
@@ -25,8 +25,9 @@ Each pixel contains an intensity value between **0 and 255**, representing how d
 ### Dataset Structure
 
 The CSV files contain **785 columns**:
+<br><br><br>
 
-## ⚙️ Hyperparameters Used
+## ⚙️ Hyperparameters Used for ANN
 
 The final model was trained using the following hyperparameters:
 
@@ -43,8 +44,31 @@ The final model was trained using the following hyperparameters:
 
 ---
 
-## 📊 Test Accuracy
+## 📊 Test Accuracy by ANN
 
 The final model achieved a **test accuracy of 89.41%** on the Fashion-MNIST test dataset.
 
 **Test Accuracy: 89.41%**
+
+<br><br>
+## ⚙️ Hyperparameters Used for CNN
+
+The final model was trained using the following hyperparameters:
+
+| Hyperparameter | Value |
+|---|---:|
+| Hidden Layer | 4 | 
+| Neuron per Layer | 128 | 
+| Learning Rate | 0.006325224850943437 | 
+| Dropout | 0.1 | 
+| Batch Size | 64 | 
+| Optimizer | Adam | 
+| Weight Decay | 0.0009686766761403881
+
+---
+
+## 📊 Test Accuracy by CNN
+
+The final model achieved a **test accuracy of 94.39%** on the Fashion-MNIST test dataset.
+
+**Test Accuracy: 94.39%**
