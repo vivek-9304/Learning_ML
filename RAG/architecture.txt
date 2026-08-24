@@ -1,0 +1,143 @@
+    Architecture
+
+                    ┌──────────────────────┐
+                    │     YOUR DATA        │
+                    │ PDFs / Docs / Web    │
+                    │ CSV / DB / Notion... │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   1. DATA LOADING    │
+                    │ Extract text/content │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   2. CHUNKING        │
+                    │ Split into small     │
+                    │ meaningful pieces    │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   3. EMBEDDING MODEL  │
+                    │ Text → vectors       │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  4. VECTOR DATABASE  │
+                    │ Store vectors + text │
+                    │ + metadata           │
+                    └──────────────────────┘
+                              ▲
+                              │
+                    ──────────┼──────────
+                         USER QUERY
+                              │
+                              ▼
+                    ┌──────────────────────┐
+                    │ 5. QUERY EMBEDDING   │
+                    │ Question → vector   │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │ 6. RETRIEVER         │
+                    │ Find similar chunks  │
+                    └──────────┬───────────┘
+                               │
+                         Top K chunks
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │ 7. PROMPT BUILDER    │
+                    │ Query + Context      │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │      8. LLM          │
+                    │ GPT / Llama / etc.   │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   9. FINAL ANSWER    │
+                    └──────────────────────┘
+
+
+
+# Complete RAG Roadmap
+
+RAG
+│
+├── 0. Prerequisites
+│   ├── Python
+│   ├── NLP
+│   ├── LLMs
+│   └── APIs
+│
+├── 1. Fundamentals
+│   ├── RAG architecture
+│   ├── Documents
+│   ├── Chunking
+│   ├── Embeddings
+│   ├── Vector DB
+│   ├── Retrieval
+│   └── Generation
+│
+├── 2. Basic RAG Project
+│   ├── PDF ingestion
+│   ├── Embeddings
+│   ├── FAISS/Chroma
+│   ├── Retriever
+│   └── LLM
+│
+├── 3. Retrieval Engineering
+│   ├── Better chunking
+│   ├── MMR
+│   ├── Metadata
+│   ├── BM25
+│   ├── Hybrid search
+│   └── Reranking
+│
+├── 4. Advanced RAG
+│   ├── Query rewriting
+│   ├── Multi-query
+│   ├── HyDE
+│   ├── Sub-questions
+│   ├── Parent-child
+│   ├── Hierarchical retrieval
+│   └── Multimodal retrieval
+│
+├── 5. Evaluation
+│   ├── Precision / Recall
+│   ├── MRR / NDCG
+│   ├── Faithfulness
+│   ├── Groundedness
+│   └── RAGAS / DeepEval
+│
+├── 6. Production
+│   ├── FastAPI
+│   ├── PostgreSQL
+│   ├── pgvector/Qdrant
+│   ├── Docker
+│   ├── Redis
+│   └── Deployment
+│
+├── 7. Optimization
+│   ├── Caching
+│   ├── Cost
+│   ├── Latency
+│   ├── Observability
+│   └── Scaling
+│
+└── 8. Advanced / Research
+    ├── Agentic RAG
+    ├── Graph RAG
+    ├── CRAG
+    ├── Self-RAG
+    ├── Adaptive RAG
+    └── Multimodal RAG
